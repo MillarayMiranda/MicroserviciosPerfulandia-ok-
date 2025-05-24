@@ -52,4 +52,28 @@ public class InventarioServiceImpl implements InventarioServices {
         return null;
     }
 
+    @Override
+    public Inventario findById(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    public interface InventarioServices {
+    boolean delete(Long id);
+    // otros métodos...
+    }
+
+    @Service
+    public class InventarioServicesImpl implements InventarioServices {
+        @Override
+        public boolean delete(Long id) {
+            // implementación real aquí
+            try {
+                inventarioRepository.deleteById(id);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+    }
+
 }

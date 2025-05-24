@@ -23,6 +23,17 @@ public class InventarioController {
         this.inventarioService = inventarioService;
     }
 
+    // Nuevo endpoint para buscar por ID de inventario
+    @GetMapping("/{id}")
+    public ResponseEntity<Inventario> getById(
+            @PathVariable @Positive(message = "El ID debe ser un número positivo") Long id) {
+        Inventario inventario = inventarioService.findById(id);
+        if (inventario != null) {
+            return ResponseEntity.ok(inventario);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<Inventario>> getInventario(
             @RequestParam(required = false) Long sucursalId) {
@@ -56,7 +67,7 @@ public class InventarioController {
             Inventario savedInventario = inventarioService.save(inventario);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedInventario);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
@@ -72,16 +83,15 @@ public class InventarioController {
             }
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
-            @PathVariable @Positive(message = "El ID debe ser un número positivo") Long id) {
+        @PathVariable @Positive(message = "El ID debe ser un número positivo") Long id) {
         try {
-            boolean deleted = (boolean) InventarioServices.delete(id);
-            if (deleted) {
+            if (inventarioService.delete(id)) {
                 return ResponseEntity.noContent().build();
             }
             return ResponseEntity.notFound().build();
