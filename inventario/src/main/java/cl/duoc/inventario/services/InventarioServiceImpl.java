@@ -52,8 +52,4 @@ public class InventarioServiceImpl implements InventarioServices {
         return null;
     }
 
-    @Override
-    public void delete(Long id) {
-        inventarioRepository.deleteById(id);
-    }
 }
