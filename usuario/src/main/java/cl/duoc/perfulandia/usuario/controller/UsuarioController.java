@@ -23,7 +23,7 @@ import cl.duoc.perfulandia.usuario.services.UsuarioService;
 
 
 @RestController
-@RequestMapping("/Usuario")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
 

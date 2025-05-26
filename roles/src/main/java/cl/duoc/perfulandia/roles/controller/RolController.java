@@ -21,7 +21,7 @@ import cl.duoc.perfulandia.roles.services.RolService;
 
 
 @RestController
-@RequestMapping("/Rol")
+@RequestMapping("/roles")
 public class RolController {
 
 
@@ -32,7 +32,7 @@ public class RolController {
     public ResponseEntity<?> ListarRoles(){
         List<Rol> rol = rolservice.ListarRoles();
         if (rol.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay Roles creados");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay roles creados");
         } else {
             return ResponseEntity.ok(rol);
         }
@@ -44,7 +44,7 @@ public class RolController {
             Rol rolconsultado = rolservice.ConsultarUnRol(idrol);
             return ResponseEntity.ok(rolconsultado);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Rol id no existe");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este rol no existe");
         }
     }
 
