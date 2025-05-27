@@ -51,4 +51,10 @@ public class ProductoServicesImpl implements ProductoServices {
             throw new RuntimeException("Producto no encontrado");
         }
     }
+
+    @Override
+    public void crearProducto(String nombre, String descripcion, double precio, int stock) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'crearProducto'");
+    }
 }

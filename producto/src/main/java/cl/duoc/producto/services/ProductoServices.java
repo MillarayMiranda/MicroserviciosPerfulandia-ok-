@@ -9,4 +9,5 @@ public interface ProductoServices {
     Producto obtenerProductoPorId(Long id);
     Producto actualizarProducto(Long id, Producto producto);
     void eliminarProducto(Long id);
+    void crearProducto(String nombre, String descripcion, double precio, int stock);
 }
