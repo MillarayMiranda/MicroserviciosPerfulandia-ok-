@@ -29,6 +29,6 @@ public class Sucursal {
     private String direccion;
 
     @Column(name = "telefono", nullable = false)
-    private Integer telefono;
+    private String telefono;
 
     }
