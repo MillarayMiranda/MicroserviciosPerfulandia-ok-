@@ -44,5 +44,22 @@ public class ProductoServiceTest {
         assertEquals("Producto Test", productoCreado.getNombre());
         verify(productoRepository, times(1)).save(any(Producto.class)); // Verificación correcta
     }
+
+    @Test
+    public void testBuscarProductoPorId() {
+        Producto p = new Producto();
+        p.setId(1L);
+        p.setNombre("Producto Test");
+        p.setDescripcion("Descripcion Test");
+        p.setPrecio(100.0);
+        p.setStock(10);
+
+        when(productoRepository.findById(1L)).thenReturn(java.util.Optional.of(p));
+        
+        Producto productoBuscado = productoServices.obtenerProductoPorId(1L);
+        
+        assertEquals("Producto Test", productoBuscado.getNombre());
+        verify(productoRepository, times(1)).findById(1L); // Verificación correcta
+    }   
         
 }

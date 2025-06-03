@@ -1,7 +1,7 @@
 package cl.duoc.inventario.controller;
 
 import cl.duoc.inventario.model.Inventario;
-import cl.duoc.inventario.services.InventarioServices;
+import cl.duoc.inventario.services.InventarioService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 
@@ -17,9 +17,9 @@ import java.util.List;
 @Validated
 public class InventarioController {
 
-    private final InventarioServices inventarioService;
+    private final InventarioService inventarioService;
 
-    public InventarioController(InventarioServices inventarioService) {
+    public InventarioController(InventarioService inventarioService) {
         this.inventarioService = inventarioService;
     }
 
