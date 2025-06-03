@@ -2,23 +2,21 @@ package cl.duoc.inventario.services;
 
 import cl.duoc.inventario.model.Inventario;
 import cl.duoc.inventario.repository.InventarioRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class InventarioServiceImpl implements InventarioServices {
+public class InventarioServiceImpl implements InventarioService {
 
-    private final InventarioRepository inventarioRepository;
-
-    public InventarioServiceImpl(InventarioRepository inventarioRepository) {
-        this.inventarioRepository = inventarioRepository;
-    }
+    @Autowired
+    private InventarioRepository inventarioRepository;
 
     @Override
-    public List<Inventario> findAll() {
-        return inventarioRepository.findAll();
+    public Inventario findById(Long id) {
+        return inventarioRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -27,11 +25,13 @@ public class InventarioServiceImpl implements InventarioServices {
     }
 
     @Override
+    public List<Inventario> findAll() {
+        return inventarioRepository.findAll();
+    }
+
+    @Override
     public Inventario findByProductoId(Long productoId) {
-        return inventarioRepository.findByProductoId(productoId)
-                .stream()
-                .findFirst()
-                .orElse(null);
+        return (Inventario) inventarioRepository.findByProductoId(productoId);
     }
 
     @Override
@@ -41,39 +41,25 @@ public class InventarioServiceImpl implements InventarioServices {
 
     @Override
     public Inventario update(Long id, Inventario inventario) {
-        Optional<Inventario> existingInventario = inventarioRepository.findById(id);
-        if (existingInventario.isPresent()) {
-            Inventario updatedInventario = existingInventario.get();
-            updatedInventario.setCantidad(inventario.getCantidad());
-            updatedInventario.setSucursalId(inventario.getSucursalId());
-            updatedInventario.setProductoId(inventario.getProductoId());
-            return inventarioRepository.save(updatedInventario);
+        if (inventarioRepository.existsById(id)) {
+            inventario.setId(id); // Asegura que el ID sea el correcto
+            return inventarioRepository.save(inventario);
         }
         return null;
     }
 
     @Override
-    public Inventario findById(Long id) {
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    public interface InventarioServices {
-    boolean delete(Long id);
-    // otros métodos...
-    }
-
-    @Service
-    public class InventarioServicesImpl implements InventarioServices {
-        @Override
-        public boolean delete(Long id) {
-            // implementación real aquí
-            try {
-                inventarioRepository.deleteById(id);
-                return true;
-            } catch (Exception e) {
-                return false;
-            }
+    public boolean delete(Long id) {
+        if (inventarioRepository.existsById(id)) {
+            inventarioRepository.deleteById(id);
+            return true;
         }
+        return false;
     }
 
+    @Override
+    public void crearInventario(Inventario nuevoInventario) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'crearInventario'");
+    }
 }
