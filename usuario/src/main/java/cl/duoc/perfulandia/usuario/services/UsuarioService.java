@@ -48,8 +48,8 @@ public class UsuarioService {
         return usuariorepository.findAll();
     }
 
-    public Usuario BuscarUnUsuario(Long rut){
-        return usuariorepository.findById(rut).get();
+    public Usuario BuscarUnUsuario(Long id){
+        return usuariorepository.findById(id).get();
     }
 
     public Usuario Guardar(Usuario usuario){
@@ -62,8 +62,8 @@ public class UsuarioService {
         return usuariorepository.save(usuario);
     }
 
-    public void Eliminar(Long rut){
-        usuariorepository.deleteById(rut);
+    public void Eliminar(Long id){
+        usuariorepository.deleteById(id);
     }
 
 }

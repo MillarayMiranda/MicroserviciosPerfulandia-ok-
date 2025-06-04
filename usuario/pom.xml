@@ -89,6 +89,12 @@
 			<version>19.8.0.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 <!-- Dependencia para Faker-->
 		<dependency>
 			<groupId>net.datafaker</groupId>

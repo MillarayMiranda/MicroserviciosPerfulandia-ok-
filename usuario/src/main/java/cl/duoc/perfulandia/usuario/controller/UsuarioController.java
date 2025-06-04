@@ -40,24 +40,25 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/{rut}")
-    public ResponseEntity<?> BuscarUnUsuario(@PathVariable Long rut){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> BuscarUnUsuario(@PathVariable Long id){
         try {
-            Usuario usuariobuscado = usuarioservice.BuscarUnUsuario(rut);
+            Usuario usuariobuscado = usuarioservice.BuscarUnUsuario(id);
             return ResponseEntity.ok(usuariobuscado);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
     }
 
-    @GetMapping("/RolUsuario/{rut}")
-    public ResponseEntity<?> DetalleRolUsuario(@PathVariable Long rut){
+    @GetMapping("/RolUsuario/{id}")
+    public ResponseEntity<?> DetalleRolUsuario(@PathVariable Long id){
         try {
-            Usuario usuariobuscado = usuarioservice.BuscarUnUsuario(rut);
+            Usuario usuariobuscado = usuarioservice.BuscarUnUsuario(id);
 
             RolDTO usuarioRoles = usuarioservice.ConsultarRol(usuariobuscado.getRol());
             RolUsuarioDTO rolUsuario = new RolUsuarioDTO();
 
+            rolUsuario.setId(usuariobuscado.getId());
             rolUsuario.setRut(usuariobuscado.getRut());
             rolUsuario.setNombre(usuariobuscado.getNombre());
             rolUsuario.setCorreo(usuariobuscado.getCorreo());
@@ -82,21 +83,21 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/{rut}")
-    public ResponseEntity<String> Eliminar(@PathVariable Long rut){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> Eliminar(@PathVariable Long id){
         try {
-            Usuario usuariobuscado = usuarioservice.BuscarUnUsuario(rut);
-            usuarioservice.Eliminar(rut);
+            Usuario usuariobuscado = usuarioservice.BuscarUnUsuario(id);
+            usuarioservice.Eliminar(id);
             return ResponseEntity.status(HttpStatus.OK).body("Usuario eliminado");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario inexistente");
         }
     }
 
-    @PutMapping("/{rut}")
-    public ResponseEntity<?> ActualizarUsuario(@PathVariable Long rut, @RequestBody Usuario usuario){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> ActualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario){
         try {
-            Usuario usuarioedit = usuarioservice.BuscarUnUsuario(rut);
+            Usuario usuarioedit = usuarioservice.BuscarUnUsuario(id);
 
             usuarioedit.setNombre(usuario.getNombre());
             usuarioedit.setCorreo(usuario.getCorreo());
