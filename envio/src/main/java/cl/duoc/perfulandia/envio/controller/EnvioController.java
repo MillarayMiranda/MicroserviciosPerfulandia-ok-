@@ -26,7 +26,7 @@ public class EnvioController {
     public ResponseEntity<?> Guardar(@RequestBody Envio enviosave){
         try {
             Envio envionuevo = envioservice.Guardar(enviosave);
-            return ResponseEntity.status(HttpStatus.OK(envionuevo));
+            return ResponseEntity.ok(envionuevo);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error en la solicitud");
         }
