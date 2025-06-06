@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cl.duoc.producto.model.Producto;
 import cl.duoc.producto.services.ProductoServices;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/productos")
+@Tag(name = "Productos", description = "Endpoints de los productos de Perfulandia")
 public class ProductoController {
 
     @Autowired

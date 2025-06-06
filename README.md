@@ -54,7 +54,7 @@ Cada microservicio es autónomo y posee su propia base de datos MongoDB.
 
 ## 🧠 Detalle por Microservicio
 
-### 1. 🧑‍💼 `usuario-service`
+### 1. 🧑‍💼 `usuario-service` hecho
 
 **Responsabilidad:** Registrar, autenticar y administrar usuarios del sistema (clientes, empleados, etc.).
 
@@ -76,7 +76,7 @@ Cada microservicio es autónomo y posee su propia base de datos MongoDB.
 - DELETE /usuarios/{id}
 - POST /auth/login
 
-### 2. 🛍 `producto-service`
+### 2. 🛍 `producto-service` hecho
 
 **Responsabilidad:** Gestionar productos disponibles para venta.
 
@@ -96,7 +96,7 @@ Cada microservicio es autónomo y posee su propia base de datos MongoDB.
 - PUT /productos/{id}
 - DELETE /productos/{id}
 
-### 3. 📦 `inventario-service`
+### 3. 📦 `inventario-service` hecho
 
 **Responsabilidad:** Controlar el inventario en distintas sucursales.
 
