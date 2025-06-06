@@ -113,7 +113,7 @@ Cada microservicio es autónomo y posee su propia base de datos MongoDB.
 - PUT /inventario/{id}
 - DELETE /inventario/{id}
 
-### 4. 📑 `pedido-service`
+### 4. 📑 `pedido-service` en proceso
 
 **Responsabilidad:** Gestionar el ciclo de vida de un pedido.
 
