@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @RestController
@@ -31,20 +32,20 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<?> crearPedido(@Valid @RequestBody Pedido pedido) {
         try {
-            if (pedido.getClienteId() == null || pedido.getFecha() == null || 
-                pedido.getTotal() == null || pedido.getEstado() == null) {
-                return ResponseEntity.badRequest()
-                        .body("Todos los campos del pedido son requeridos");
+            if (pedido.getFecha() == null) { // Ahora la fecha se parseará correctamente
+                return ResponseEntity.badRequest().body("La fecha es requerida");
             }
+            // Resto de validaciones...
             
             Pedido nuevoPedido = pedidoService.crear(pedido);
             return ResponseEntity.ok(nuevoPedido);
             
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (DateTimeParseException e) {
+            return ResponseEntity.badRequest()
+                    .body("Formato de fecha inválido. Use yyyy-MM-dd");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al crear el pedido: " + e.getMessage());
+            return ResponseEntity.internalServerError()
+                    .body("Error al crear pedido: " + e.getMessage());
         }
     }
 

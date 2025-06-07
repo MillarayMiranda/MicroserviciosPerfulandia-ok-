@@ -28,14 +28,8 @@ public class DataLoader implements CommandLineRunner {
 
         pedido.setClienteId(faker.number().numberBetween(1, 21));// Asignar fecha como LocalDate (si usas LocalDate en el modelo)
         
-        pedido.setFecha(faker.date()
-            .past(30, TimeUnit.DAYS)
-            .toInstant()
-            .atZone(ZoneId.systemDefault())
-            .toLocalDate());
-
-        // Asignar clienteId aleatorio entre 1 y 20
-
+        pedido.setFecha(faker.date().past(365, TimeUnit.DAYS).toInstant()
+                .atZone(ZoneId.systemDefault()).toLocalDate()); // Asignar fecha aleatoria en el pasado
 
         // Total entre 1000 y 50000
         pedido.setTotal(faker.number().randomDouble(2, 1000, 50000));

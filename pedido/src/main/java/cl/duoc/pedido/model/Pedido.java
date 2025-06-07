@@ -1,6 +1,9 @@
 package cl.duoc.pedido.model;
 
+
 import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +31,7 @@ public class Pedido {
     @Column(name = "cliente_id", nullable = false)
     private Integer clienteId; // Cambiar a camelCase
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
