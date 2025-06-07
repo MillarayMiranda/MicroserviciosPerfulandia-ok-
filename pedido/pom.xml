@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.6</version>
+		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cl.duoc</groupId>
-	<artifactId>producto</artifactId>
+	<artifactId>pedido</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>producto</name>
-	<description>Microservicio Producto</description>
+	<name>pedido</name>
+	<description>Microservicio de pedidos</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -29,7 +29,7 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
-	<dependencies>
+		<dependencies>
 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

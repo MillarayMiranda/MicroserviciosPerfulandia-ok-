@@ -61,6 +61,27 @@
             "projectName": "roles",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PedidoApplication<pedido>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.pedido.PedidoApplication",
+            "projectName": "pedido",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=49940 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=pedido"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EnvioApplication<envio>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.perfulandia.envio.EnvioApplication",
+            "projectName": "envio",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
