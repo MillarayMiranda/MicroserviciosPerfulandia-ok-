@@ -21,6 +21,7 @@ public class testBuscarProductoDB {
         assertEquals("Awesome Paper Bench", productoBuscado.getNombre());
 
     }
+    
     @Test
     public void testCrearProducto() {
         Producto nuevoProducto = new Producto();
