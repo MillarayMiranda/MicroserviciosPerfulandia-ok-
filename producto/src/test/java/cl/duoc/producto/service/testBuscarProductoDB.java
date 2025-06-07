@@ -18,7 +18,7 @@ public class testBuscarProductoDB {
     @Test
     public void testBuscarProducto() {
         Producto productoBuscado = productoServices.obtenerProductoPorId(3L);
-        assertEquals("Jo Malone Wood Sage & Sea Salt", productoBuscado.getNombre());
+        assertEquals("Awesome Paper Bench", productoBuscado.getNombre());
 
     }
     @Test

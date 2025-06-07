@@ -17,29 +17,27 @@ public class DataLoader implements CommandLineRunner {
 
     private final Faker faker = new Faker(new Locale("es", "CL"));
 
-
     @Autowired
     private PedidoService pedidoService;
 
-@Override
-    public void run(String... args) throws Exception {
-    for (int i = 0; i < 100; i++) {
-        Pedido pedido = new Pedido();
+    @Override
+        public void run(String... args) throws Exception {
+        for (int i = 0; i < 100; i++) {
+            Pedido pedido = new Pedido();
 
-        pedido.setClienteId(faker.number().numberBetween(1, 21));// Asignar fecha como LocalDate (si usas LocalDate en el modelo)
-        
-        pedido.setFecha(faker.date().past(365, TimeUnit.DAYS).toInstant()
-                .atZone(ZoneId.systemDefault()).toLocalDate()); // Asignar fecha aleatoria en el pasado
+            pedido.setClienteId(faker.number().numberBetween(1, 21));
+            
+            pedido.setFecha(faker.date().past(365, TimeUnit.DAYS).toInstant()
+                    .atZone(ZoneId.systemDefault()).toLocalDate()); // Asignar fecha aleatoria en el pasado
 
-        // Total entre 1000 y 50000
-        pedido.setTotal(faker.number().randomDouble(2, 1000, 50000));
+            // Total entre 1000 y 50000
+            pedido.setTotal(faker.number().randomDouble(2, 1000, 50000));
 
-        // Estado aleatorio
-        pedido.setEstado(faker.options().option("PENDIENTE", "ENVIADO", "ENTREGADO", "CANCELADO"));
+            // Estado aleatorio
+            pedido.setEstado(faker.options().option("PENDIENTE", "ENVIADO", "ENTREGADO", "CANCELADO"));
 
-        pedidoService.crear(pedido);
+            pedidoService.crear(pedido);
+        }
     }
-}
-
     
 }

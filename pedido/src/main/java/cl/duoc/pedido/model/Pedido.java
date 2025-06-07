@@ -2,6 +2,7 @@ package cl.duoc.pedido.model;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -29,7 +30,7 @@ public class Pedido {
     private Long id;
 
     @Column(name = "cliente_id", nullable = false)
-    private Integer clienteId; // Cambiar a camelCase
+    private Integer clienteId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "fecha", nullable = false)
@@ -40,6 +41,18 @@ public class Pedido {
 
     @Column(name = "estado", nullable = false)
     private String estado;
+    
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+    public void setFecha(String string, DateTimeFormatter formatter) {
+        // TODO Auto-generated method stub
+        this.fecha = LocalDate.parse(string, formatter);
+    }
+
+
 
 
 }
+
+
