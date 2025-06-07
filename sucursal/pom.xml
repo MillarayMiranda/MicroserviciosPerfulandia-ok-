@@ -70,6 +70,12 @@
 			<artifactId>datafaker</artifactId>
 			<version>2.0.2</version>
 		</dependency>
+				<!-- Dependencia para swagger-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
 
 
 		<dependency>
@@ -97,11 +103,6 @@
 			<groupId>com.oracle.database.security</groupId>
 			<artifactId>osdt_cert</artifactId>
 			<version>19.8.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.javafaker</groupId>
-			<artifactId>javafaker</artifactId>
-			<version>1.0.2</version>
 		</dependency>
 
 
