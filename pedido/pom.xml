@@ -29,7 +29,7 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
-	<dependencies>
+		<dependencies>
 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,6 +69,12 @@
 			<groupId>net.datafaker</groupId>
 			<artifactId>datafaker</artifactId>
 			<version>2.0.2</version>
+		</dependency>
+				<!-- Dependencia para swagger-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 
 

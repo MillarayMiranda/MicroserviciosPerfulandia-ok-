@@ -129,7 +129,7 @@ Cada microservicio es autónomo y posee su propia base de datos MongoDB.
 - POST /pedidos
 - GET /pedidos/usuario/{id}
 - GET /pedidos/{id}
-- PUT /pedidos/{id}/estado
+- PUT /pedidos/{id}
 
 ### 5. 🧾 `factura-service` (opcional)
 

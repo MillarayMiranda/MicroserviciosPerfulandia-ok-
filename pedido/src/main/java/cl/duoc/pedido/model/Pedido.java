@@ -1,5 +1,7 @@
 package cl.duoc.pedido.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,10 +26,10 @@ public class Pedido {
     private Long id;
 
     @Column(name = "cliente_id", nullable = false)
-    private Integer cliente_id;
+    private Integer clienteId; // Cambiar a camelCase
 
     @Column(name = "fecha", nullable = false)
-    private String fecha;
+    private LocalDate fecha;
 
     @Column(name = "total", nullable = false)
     private Double total;

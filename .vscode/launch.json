@@ -61,6 +61,16 @@
             "projectName": "roles",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PedidoApplication<pedido>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.pedido.PedidoApplication",
+            "projectName": "pedido",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
