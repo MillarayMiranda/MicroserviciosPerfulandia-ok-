@@ -53,7 +53,6 @@ public class Pedido {
         this.fecha = fecha;
     }
     public void setFecha(String string, DateTimeFormatter formatter) {
-        // TODO Auto-generated method stub
         this.fecha = LocalDate.parse(string, formatter);
     }
 
