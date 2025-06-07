@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "Modelo de Producto para Perfulandia")
+
 public class Producto {
 
     @Id
