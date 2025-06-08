@@ -100,5 +100,10 @@ public class InventarioServiceImpl implements InventarioService {
         
         return inventarioRepository.save(inventario);
     }
+
+    @Override
+    public Inventario obtenerInventarioPorId(long l) {
+        throw new UnsupportedOperationException("Unimplemented method 'obtenerInventarioPorId'");
+    }
     
 }

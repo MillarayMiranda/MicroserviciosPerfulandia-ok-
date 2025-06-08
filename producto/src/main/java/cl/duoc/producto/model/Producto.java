@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(description = "Modelo de Producto para Perfulandia")
+@Schema(name= "Producto", description = "Modelo de Producto para Perfulandia")
 
 public class Producto {
 

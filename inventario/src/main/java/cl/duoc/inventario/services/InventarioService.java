@@ -12,4 +12,5 @@ public interface InventarioService {
     Inventario update(Long id, Inventario inventario);
     boolean delete(Long id);
     Inventario crearInventario(Inventario inventario);
+    Inventario obtenerInventarioPorId(long l);
 }
