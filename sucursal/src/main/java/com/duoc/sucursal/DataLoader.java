@@ -10,12 +10,10 @@ import com.duoc.sucursal.services.SucursalServices;
 import net.datafaker.Faker;
 
 import java.util.Locale;
-import java.util.Random;
 
 @Component
 public class DataLoader implements CommandLineRunner {
     private final Faker faker = new Faker(new Locale("es"));
-    private final Random random = new Random();
 
     @Autowired
     private SucursalServices sucursalServices;
