@@ -40,4 +40,17 @@ public class TestBD {
         assertEquals(idCreado, pedidoCreado.getId()); // Compara otros campos
     }
 
+    @Test
+    public void testActualizarPedido() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        Pedido pedidoExistente = pedidoService.obtenerPorId(1L);
+        pedidoExistente.setEstado("COMPLETADO");
+        pedidoExistente.setFecha("01-01-2010", formatter); // La fecha se asignará automáticamente
+
+        Pedido pedidoActualizado = pedidoService.actualizar(pedidoExistente.getId(), pedidoExistente);
+
+        assertEquals("COMPLETADO", pedidoActualizado.getEstado());
+    }
+
 }
