@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-
+import cl.duoc.producto.assembler.ProductoModelAssembler;
 import cl.duoc.producto.model.Producto;
 import cl.duoc.producto.services.ProductoServices;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,6 +30,9 @@ public class ProductoController {
 
     @Autowired
     private ProductoServices productoServices;
+    
+    @Autowired
+    private ProductoModelAssembler assembler;
 
     @GetMapping
     @Operation(summary = "Listar productos", description = "Obtiene una lista de todos los productos registrados")
@@ -46,7 +49,7 @@ public class ProductoController {
         if(productos.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran productos registrados");
         } else {
-            return ResponseEntity.ok(productos);
+            return ResponseEntity.ok(assembler.toCollectionModel(productos));
         }
     }
 
@@ -63,7 +66,7 @@ public class ProductoController {
     public ResponseEntity<?> obtenerProductoPorId(@PathVariable Long id) {
         try {
             Producto producto = productoServices.obtenerProductoPorId(id);
-            return ResponseEntity.ok(producto);
+            return ResponseEntity.ok(assembler.toModel(producto));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
         }
@@ -82,7 +85,7 @@ public class ProductoController {
     public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
         try {
             Producto nuevoProducto = productoServices.crearProducto(producto);
-            return ResponseEntity.ok(nuevoProducto);
+            return ResponseEntity.ok(assembler.toModel(nuevoProducto));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
@@ -123,7 +126,7 @@ public class ProductoController {
     public ResponseEntity<?> actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
         try {
             Producto productoActualizado = productoServices.actualizarProducto(id, producto);
-            return ResponseEntity.ok(productoActualizado);
+            return ResponseEntity.ok(assembler.toModel(productoActualizado));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no existe");
         }

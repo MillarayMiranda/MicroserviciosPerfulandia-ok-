@@ -10,7 +10,7 @@ import cl.duoc.producto.model.Producto;
 import cl.duoc.producto.services.ProductoServices;
 
 @SpringBootTest
-public class testBuscarProductoDB {
+public class TestBD {
     
     @Autowired
     private ProductoServices productoServices;
@@ -37,6 +37,19 @@ public class testBuscarProductoDB {
         assertNotNull(productoCreado.getId()); // Solo verifica que se asignó un ID
         assertEquals(idCreado, productoCreado.getId()); // Compara otros campos
     }
+
+    @Test
+    public void testActualizarProducto() {
+        Producto productoExistente = productoServices.obtenerProductoPorId(3L);
+        productoExistente.setNombre("Producto Actualizado");
+        
+        Producto productoActualizado = productoServices.actualizarProducto(3L, productoExistente);
+        
+        assertEquals("Producto Actualizado", productoActualizado.getNombre());
+        assertEquals(3L, productoActualizado.getId().longValue());
+    }
+
+
 
 
 }
