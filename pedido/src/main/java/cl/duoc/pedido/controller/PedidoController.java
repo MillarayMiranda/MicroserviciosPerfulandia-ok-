@@ -1,5 +1,6 @@
 package cl.duoc.pedido.controller;
 
+import cl.duoc.pedido.assembler.PedidoModelAssembler;
 import cl.duoc.pedido.model.Pedido;
 import cl.duoc.pedido.service.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,6 +25,9 @@ public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
+    
+    @Autowired
+    private PedidoModelAssembler assembler; // Asegúrate de tener un PedidoModelAssembler si es necesario    
 
     @GetMapping
     @Operation(summary = "Obtener todos los pedidos", description = "Devuelve una lista de todos los pedidos registrados")
@@ -38,7 +42,7 @@ public class PedidoController {
     public ResponseEntity<?> obtenerTodosLosPedidos() {
         try {
             List<Pedido> pedidos = pedidoService.obtenerTodos();
-            return ResponseEntity.ok(pedidos);
+            return ResponseEntity.ok(assembler.toCollectionModel(pedidos));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error al obtener los pedidos: " + e.getMessage());
@@ -61,7 +65,7 @@ public class PedidoController {
                 return ResponseEntity.badRequest().body("La fecha es requerida");
             }
             Pedido nuevoPedido = pedidoService.crear(pedido);
-            return ResponseEntity.ok(nuevoPedido);
+            return ResponseEntity.ok(assembler.toModel(nuevoPedido));
             
         } catch (DateTimeParseException e) {
             return ResponseEntity.badRequest()
@@ -86,7 +90,7 @@ public class PedidoController {
         try {
             Pedido pedido = pedidoService.obtenerPorId(id);
             if (pedido != null) {
-                return ResponseEntity.ok(pedido);
+                return ResponseEntity.ok(assembler.toModel(pedido));
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("Pedido no encontrado con ID: " + id);
@@ -113,7 +117,7 @@ public class PedidoController {
         try {
             Pedido pedido = pedidoService.actualizar(id, pedidoActualizado);
             if (pedido != null) {
-                return ResponseEntity.ok(pedido);
+                return ResponseEntity.ok(assembler.toModel(pedido));
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("Pedido no encontrado con ID: " + id);

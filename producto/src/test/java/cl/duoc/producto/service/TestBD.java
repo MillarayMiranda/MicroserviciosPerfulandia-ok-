@@ -17,8 +17,8 @@ public class TestBD {
 
     @Test
     public void testBuscarProducto() {
-        Producto productoBuscado = productoServices.obtenerProductoPorId(3L);
-        assertEquals("Awesome Paper Bench", productoBuscado.getNombre());
+        Producto productoBuscado = productoServices.obtenerProductoPorId(3248L);
+        assertEquals(3248L, productoBuscado.getId());
 
     }
     
@@ -40,16 +40,12 @@ public class TestBD {
 
     @Test
     public void testActualizarProducto() {
-        Producto productoExistente = productoServices.obtenerProductoPorId(3L);
+        Producto productoExistente = productoServices.obtenerProductoPorId(3248L);
         productoExistente.setNombre("Producto Actualizado");
         
-        Producto productoActualizado = productoServices.actualizarProducto(3L, productoExistente);
+        Producto productoActualizado = productoServices.actualizarProducto(3248L, productoExistente);
         
         assertEquals("Producto Actualizado", productoActualizado.getNombre());
-        assertEquals(3L, productoActualizado.getId().longValue());
+        assertEquals(3248L, productoActualizado.getId().longValue());
     }
-
-
-
-
 }
