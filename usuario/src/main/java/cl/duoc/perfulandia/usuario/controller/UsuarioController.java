@@ -55,7 +55,7 @@ public class UsuarioController {
         try {
             Usuario usuariobuscado = usuarioservice.BuscarUnUsuario(id);
 
-            RolDTO usuarioRoles = usuarioservice.ConsultarRol(usuariobuscado.getRol());
+            RolDTO usuarioRoles = usuarioservice.ConsultarRol(usuariobuscado.getIdrol());
             RolUsuarioDTO rolUsuario = new RolUsuarioDTO();
 
             rolUsuario.setId(usuariobuscado.getId());
@@ -72,15 +72,9 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<?> Guardar(@RequestBody Usuario usuariosave){
-        try {
-            Usuario usuarionuevo = usuarioservice.Guardar(usuariosave);
-            return ResponseEntity.ok(usuarionuevo);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error al registrar usuario");
-        }
+    public ResponseEntity<Usuario> Guardar(@RequestBody Usuario usuariosave){
+        Usuario usuarionuevo = usuarioservice.Guardar(usuariosave);
+        return ResponseEntity.ok(usuarionuevo);
     }
 
     @DeleteMapping("/{id}")
@@ -104,7 +98,7 @@ public class UsuarioController {
             usuarioedit.setPassword(usuario.getPassword());
             usuarioedit.setDireccion(usuario.getDireccion());
             usuarioedit.setTelefono(usuario.getTelefono());
-            usuarioedit.setRol(usuario.getRol());
+            usuarioedit.setIdrol(usuario.getIdrol());
 
             usuarioservice.Guardar(usuarioedit);
             return ResponseEntity.ok(usuarioedit);

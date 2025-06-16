@@ -37,8 +37,6 @@ public class UsuarioService {
                                 .bodyToMono(RolDTO.class)
                                 .block();
             return rol;
-        } catch (WebClientResponseException.NotFound e) {
-            return null;
         } catch (Exception e) {
             throw new RuntimeException("Error al consultar roles", e);
         }
@@ -53,11 +51,7 @@ public class UsuarioService {
     }
 
     public Usuario Guardar(Usuario usuario){
-        RolDTO rol = ConsultarRol(usuario.getRol());
-
-        if (rol == null) {
-            throw new IllegalArgumentException("Rol especificado no existe");
-        }
+        //RolDTO rol = ConsultarRol(usuario.getRol());
 
         return usuariorepository.save(usuario);
     }

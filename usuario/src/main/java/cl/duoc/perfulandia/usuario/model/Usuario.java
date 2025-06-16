@@ -41,6 +41,6 @@ public class Usuario {
     private String telefono;
 
     @Column(name = "idrol", nullable = false)
-    private Integer rol;
+    private Integer idrol;
 
 }
