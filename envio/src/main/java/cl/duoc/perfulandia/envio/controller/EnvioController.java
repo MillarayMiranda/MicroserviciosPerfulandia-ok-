@@ -42,7 +42,7 @@ public class EnvioController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<?> ConsultarEnvio(@PathVariable Long id){
         try {
             Envio enviobuscado = envioservice.ConsultarEnvio(id);

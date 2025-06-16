@@ -10,17 +10,18 @@ import cl.duoc.producto.model.Producto;
 import cl.duoc.producto.services.ProductoServices;
 
 @SpringBootTest
-public class testBuscarProductoDB {
+public class TestBD {
     
     @Autowired
     private ProductoServices productoServices;
 
     @Test
     public void testBuscarProducto() {
-        Producto productoBuscado = productoServices.obtenerProductoPorId(3L);
-        assertEquals("Jo Malone Wood Sage & Sea Salt", productoBuscado.getNombre());
+        Producto productoBuscado = productoServices.obtenerProductoPorId(3248L);
+        assertEquals(3248L, productoBuscado.getId());
 
     }
+    
     @Test
     public void testCrearProducto() {
         Producto nuevoProducto = new Producto();
@@ -37,5 +38,14 @@ public class testBuscarProductoDB {
         assertEquals(idCreado, productoCreado.getId()); // Compara otros campos
     }
 
-
+    @Test
+    public void testActualizarProducto() {
+        Producto productoExistente = productoServices.obtenerProductoPorId(3248L);
+        productoExistente.setNombre("Producto Actualizado");
+        
+        Producto productoActualizado = productoServices.actualizarProducto(3248L, productoExistente);
+        
+        assertEquals("Producto Actualizado", productoActualizado.getNombre());
+        assertEquals(3248L, productoActualizado.getId().longValue());
+    }
 }
