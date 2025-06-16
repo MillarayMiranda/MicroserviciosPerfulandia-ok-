@@ -1,5 +1,6 @@
 package cl.duoc.inventario.controller;
 
+import cl.duoc.inventario.assembler.InventarioModelAssembler;
 import cl.duoc.inventario.model.Inventario;
 import cl.duoc.inventario.services.InventarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -27,8 +29,11 @@ public class InventarioController {
 
     private final InventarioService inventarioService;
 
+    private final InventarioModelAssembler assembler;
+
     public InventarioController(InventarioService inventarioService) {
         this.inventarioService = inventarioService;
+        this.assembler = new InventarioModelAssembler();
     }
 
     // Nuevo endpoint para buscar por ID de inventario
@@ -42,11 +47,11 @@ public class InventarioController {
             content = @Content(mediaType = "application/json",
             schema = @Schema(type = "string", example = "Inventario no encontrado")))
     })
-    public ResponseEntity<Inventario> getById(
+    public ResponseEntity<EntityModel<Inventario>> getById(
             @PathVariable @Positive(message = "El ID debe ser un número positivo") Long id) {
         Inventario inventario = inventarioService.findById(id);
         if (inventario != null) {
-            return ResponseEntity.ok(inventario);
+            return ResponseEntity.ok(assembler.toModel(inventario));
         }
         return ResponseEntity.notFound().build();
     }

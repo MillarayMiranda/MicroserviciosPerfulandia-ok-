@@ -1,4 +1,4 @@
-package com.duoc.sucursal.controller;
+package com.duoc.sucursal.assembler;
 
 import com.duoc.sucursal.model.Sucursal;
 import com.duoc.sucursal.services.SucursalServices;
@@ -25,6 +25,9 @@ public class SucursalController {
     @Autowired
     private SucursalServices sucursalService;
 
+    @Autowired
+    private SucursalModelAssembler assembler;
+
     @GetMapping
     @Operation(summary = "Listar sucursales", description = "Obtiene una lista de todas las sucursales registradas")
     @ApiResponses(value = {
@@ -40,7 +43,7 @@ public class SucursalController {
         if(sucursales.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran sucursales registradas");
         } else {
-            return ResponseEntity.ok(sucursales);
+            return ResponseEntity.ok(assembler.toCollectionModel(sucursales));
         }
     }
 
@@ -57,7 +60,7 @@ public class SucursalController {
     public ResponseEntity<?> obtenerSucursalPorId(@PathVariable Long id) {
         try {
             Sucursal sucursal = sucursalService.obtenerSucursalPorId(id);
-            return ResponseEntity.ok(sucursal);
+            return ResponseEntity.ok(assembler.toModel(sucursal));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sucursal no encontrada");
         }
@@ -76,7 +79,7 @@ public class SucursalController {
     public ResponseEntity<?> crearSucursal(@RequestBody Sucursal sucursal) {
         try {
             Sucursal nuevaSucursal = sucursalService.crearSucursal(sucursal);
-            return ResponseEntity.ok(nuevaSucursal);
+            return ResponseEntity.ok(assembler.toModel(nuevaSucursal));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
@@ -97,7 +100,7 @@ public class SucursalController {
     public ResponseEntity<?> actualizarSucursal(@PathVariable Long id, @RequestBody Sucursal sucursal) {
         try {
             Sucursal sucursalActualizada = sucursalService.actualizarSucursal(id, sucursal);
-            return ResponseEntity.ok(sucursalActualizada);
+            return ResponseEntity.ok(assembler);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sucursal no existe");
         }
