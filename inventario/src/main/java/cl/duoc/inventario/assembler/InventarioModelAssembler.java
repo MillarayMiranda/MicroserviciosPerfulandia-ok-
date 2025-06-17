@@ -17,11 +17,11 @@ public class InventarioModelAssembler  implements RepresentationModelAssembler<I
     public EntityModel<Inventario> toModel(Inventario inventario) {
         return EntityModel.of(
             inventario,
-            linkTo(methodOn(InventarioController.class).findAll()).withRel("Lista los inventarios"),
+            linkTo(methodOn(InventarioController.class).getInventario(null)).withRel("Lista los inventarios"),
             linkTo(methodOn(InventarioController.class).getById(inventario.getId())).withRel("Obtiene un inventario por ID"),
-            linkTo(methodOn(InventarioController.class).crearInventario(inventario)).withRel("Crea un nuevo inventario"),
-            linkTo(methodOn(InventarioController.class).actualizarInventario(inventario.getId(), inventario)).withRel("Actualiza un inventario"),
-            linkTo(methodOn(InventarioController.class).eliminarInventario(inventario.getId())).withRel("Elimina un inventario por ID")
+            linkTo(methodOn(InventarioController.class).create(inventario)).withRel("Crea un nuevo inventario"),
+            linkTo(methodOn(InventarioController.class).update(inventario.getId(), inventario)).withRel("Actualiza un inventario"),
+            linkTo(methodOn(InventarioController.class).delete(inventario.getId())).withRel("Elimina un inventario por ID")
         );
     }
 

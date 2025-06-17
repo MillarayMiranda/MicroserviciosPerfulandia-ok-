@@ -66,7 +66,7 @@ public class InventarioController {
             content = @Content(mediaType = "application/json",
             schema = @Schema(type = "string", example = "No se encuentran inventarios para la sucursal especificada")))
     })
-    public ResponseEntity<List<Inventario>> getInventario(
+    public ResponseEntity<?> getInventario(
             @RequestParam(required = false) Long sucursalId) {
         
         if (sucursalId != null) {
@@ -74,10 +74,10 @@ public class InventarioController {
             if (inventarios.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
-            return ResponseEntity.ok(inventarios);
+            return ResponseEntity.ok(assembler.toCollectionModel(inventarios));
         } else {
             List<Inventario> inventarios = inventarioService.findAll();
-            return ResponseEntity.ok(inventarios);
+            return ResponseEntity.ok(assembler.toCollectionModel(inventarios));
         }
     }
 
@@ -91,11 +91,11 @@ public class InventarioController {
             content = @Content(mediaType = "application/json",
             schema = @Schema(type = "string", example = "Inventario no encontrado para el producto especificado")))
     })
-    public ResponseEntity<Inventario> getByProductoId(
+    public ResponseEntity<EntityModel<Inventario>> getByProductoId(
             @PathVariable @Positive(message = "El ID de producto debe ser un número positivo") Long id) {
         Inventario inventario = inventarioService.findByProductoId(id);
         if (inventario != null) {
-            return ResponseEntity.ok(inventario);
+            return ResponseEntity.ok(assembler.toModel(inventario));
         }
         return ResponseEntity.notFound().build();
     }
@@ -133,14 +133,14 @@ public class InventarioController {
             content = @Content(mediaType = "application/json",
             schema = @Schema(type = "string", example = "Error al actualizar el inventario")))
     })
-    public ResponseEntity<Inventario> update(
+    public ResponseEntity<EntityModel<Inventario>> update(
             @PathVariable @Positive(message = "El ID debe ser un número positivo") Long id,
             @RequestBody @Valid Inventario inventario) {
         
         try {
             Inventario updatedInventario = inventarioService.update(id, inventario);
             if (updatedInventario != null) {
-                return ResponseEntity.ok(updatedInventario);
+                return ResponseEntity.ok(assembler.toModel(updatedInventario));
             }
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
