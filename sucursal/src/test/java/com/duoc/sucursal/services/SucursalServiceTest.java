@@ -59,4 +59,24 @@ public class SucursalServiceTest {
         assertEquals("Sucursal Test", sucursalBuscada.getNombre());
         verify(sucursalRepository, times(1)).findById(1L); // Verificación correcta
     }
+
+    @Test
+    public void testActualizarSucursal() {
+        Sucursal sucursalExistente = new Sucursal();
+        sucursalExistente.setId(1L);
+        sucursalExistente.setNombre("Sucursal Test");
+        sucursalExistente.setDireccion("123 Test St");
+        sucursalExistente.setTelefono("123456789");
+
+        when(sucursalRepository.findById(1L)).thenReturn(java.util.Optional.of(sucursalExistente));
+        when(sucursalRepository.save(any(Sucursal.class))).thenReturn(sucursalExistente);
+
+        sucursalExistente.setNombre("Sucursal Actualizada");
+        Sucursal sucursalActualizada = sucursalService.actualizarSucursal(1L, sucursalExistente);
+
+        assertEquals("Sucursal Actualizada", sucursalActualizada.getNombre());
+        verify(sucursalRepository, times(1)).save(any(Sucursal.class)); // Verificación correcta
+    }
+
+
 }

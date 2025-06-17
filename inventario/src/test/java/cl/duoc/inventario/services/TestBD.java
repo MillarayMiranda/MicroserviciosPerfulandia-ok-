@@ -32,5 +32,7 @@ public class TestBD {
 
         assertEquals(idCreado, inventarioCreado.getId()); // Verifica que se asignó un ID
     }
+
+    
     
 }
