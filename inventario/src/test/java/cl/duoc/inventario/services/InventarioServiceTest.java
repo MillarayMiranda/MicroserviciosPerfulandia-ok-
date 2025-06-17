@@ -60,4 +60,27 @@ public class InventarioServiceTest {
         verify(inventarioRepository, times(1)).findById(1L);
     }
 
+    @Test
+    public void testActualizarInventario() {
+        Inventario inventarioExistente = new Inventario();
+        inventarioExistente.setId(1L);
+        inventarioExistente.setProductoId(1L);
+        inventarioExistente.setSucursalId(1L);
+        inventarioExistente.setCantidad(100);
+
+        when(inventarioRepository.findById(1L)).thenReturn(java.util.Optional.of(inventarioExistente));
+        when(inventarioRepository.save(any(Inventario.class))).thenReturn(inventarioExistente);
+
+        Inventario inventarioActualizado = new Inventario();
+        inventarioActualizado.setId(1L);
+        inventarioActualizado.setProductoId(2L);
+        inventarioActualizado.setSucursalId(1L);
+        inventarioActualizado.setCantidad(200);
+
+        Inventario resultado = inventarioService.update(1L, inventarioActualizado);
+
+        assertEquals(2L, resultado.getProductoId());
+        verify(inventarioRepository, times(1)).save(any(Inventario.class));
+    }   
+
 }

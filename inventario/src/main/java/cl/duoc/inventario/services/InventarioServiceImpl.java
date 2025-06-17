@@ -2,9 +2,8 @@ package cl.duoc.inventario.services;
 
 import cl.duoc.inventario.model.Inventario;
 import cl.duoc.inventario.repository.InventarioRepository;
-import cl.duoc.inventario.services.InventarioService;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
