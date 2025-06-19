@@ -82,6 +82,16 @@
             "projectName": "envio",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-FacturaApplication<factura>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.factura.FacturaApplication",
+            "projectName": "factura",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

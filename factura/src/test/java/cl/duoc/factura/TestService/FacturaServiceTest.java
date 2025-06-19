@@ -6,7 +6,6 @@ import cl.duoc.factura.repository.FacturaRepository;
 import cl.duoc.factura.service.FacturaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
