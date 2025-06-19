@@ -19,9 +19,6 @@ import cl.duoc.perfulandia.usuario.DTO.RolUsuarioDTO;
 import cl.duoc.perfulandia.usuario.model.Usuario;
 import cl.duoc.perfulandia.usuario.services.UsuarioService;
 
-
-
-
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {

@@ -81,6 +81,17 @@
             "mainClass": "cl.duoc.perfulandia.envio.EnvioApplication",
             "projectName": "envio",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-FacturaApplication<factura>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.factura.FacturaApplication",
+            "projectName": "factura",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]
