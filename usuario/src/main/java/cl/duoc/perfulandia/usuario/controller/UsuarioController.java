@@ -72,9 +72,13 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> Guardar(@RequestBody Usuario usuariosave){
-        Usuario usuarionuevo = usuarioservice.Guardar(usuariosave);
-        return ResponseEntity.ok(usuarionuevo);
+    public ResponseEntity<?> Guardar(@RequestBody Usuario usuariosave){
+        try {
+            Usuario usuarionuevo = usuarioservice.Guardar(usuariosave);
+            return ResponseEntity.ok(usuarionuevo);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error al registrar usuario");
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import cl.duoc.perfulandia.usuario.DTO.RolDTO;
 import cl.duoc.perfulandia.usuario.model.Usuario;
@@ -51,9 +50,13 @@ public class UsuarioService {
     }
 
     public Usuario Guardar(Usuario usuario){
-        //RolDTO rol = ConsultarRol(usuario.getRol());
+        RolDTO rol = ConsultarRol(usuario.getIdrol());
 
-        return usuariorepository.save(usuario);
+        if (rol == null) {
+            throw new IllegalArgumentException("Rol especificado no existe");
+        } else {
+            return usuariorepository.save(usuario);
+        }
     }
 
     public void Eliminar(Long id){
