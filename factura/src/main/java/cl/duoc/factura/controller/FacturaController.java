@@ -42,8 +42,12 @@ public class FacturaController {
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Lista de facturas obtenida exitosamente",
             content = @Content(schema = @Schema(implementation = Factura.class))),
-        @ApiResponse(responseCode = "404", description = "No se encontraron facturas"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+        @ApiResponse(responseCode = "404", description = "No se encontraron facturas",
+        content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "No se encontraron facturas"))),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor", 
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "Error al obtener las facturas: <error_message>")))
     })
     @GetMapping
     public ResponseEntity<?> obtenerTodasLasFacturas() {
@@ -74,8 +78,12 @@ public class FacturaController {
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Factura encontrada exitosamente",
             content = @Content(schema = @Schema(implementation = Factura.class))),
-        @ApiResponse(responseCode = "404", description = "Factura no encontrada"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+        @ApiResponse(responseCode = "404", description = "Factura no encontrada",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "Factura no encontrada con ID: <id>"))),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "Error al obtener la factura: <error_message>")))
     })
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerFactura(
@@ -93,8 +101,12 @@ public class FacturaController {
     @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Factura creada exitosamente",
             content = @Content(schema = @Schema(implementation = Factura.class))),
-        @ApiResponse(responseCode = "400", description = "Datos inválidos"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+        @ApiResponse(responseCode = "400", description = "Datos inválidos",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "Error al crear la factura: <error_message>"))),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "Error al crear la factura: <error_message>")))
     })
     @PostMapping
     public ResponseEntity<?> crearFactura(
@@ -135,8 +147,12 @@ public class FacturaController {
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Factura actualizada exitosamente",
                     content = @Content(schema = @Schema(implementation = Factura.class))),
-        @ApiResponse(responseCode = "404", description = "Factura no encontrada"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+        @ApiResponse(responseCode = "404", description = "Factura no encontrada",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(type = "string", example = "Factura no encontrada con ID: <id>"))),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(type = "string", example = "Error al actualizar la factura: <error_message>")))
     })
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarFactura(
@@ -162,8 +178,12 @@ public class FacturaController {
     @Operation(summary = "Eliminar factura", description = "Elimina una factura del sistema según su ID")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Factura eliminada exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Factura no encontrada"),
-        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+        @ApiResponse(responseCode = "404", description = "Factura no encontrada",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "Factura no encontrada con ID: <id>"))),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(type = "string", example = "Error al eliminar la factura: <error_message>")))
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarFactura(
@@ -191,11 +211,16 @@ public class FacturaController {
         ),
         @ApiResponse(
             responseCode = "404",
-            description = "No se encontró la factura o el usuario no está registrado"
+            description = "No se encontró la factura o el usuario no está registrado",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(type = "string", example = "No se encontró la factura o el usuario no está registrado"))
         ),
         @ApiResponse(
             responseCode = "500",
-            description = "Error interno del servidor"
+            description = "Error interno del servidor",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(type = "string", example = "Error al obtener la factura con usuario: <error_message>")
+            )
         )
     })
     @GetMapping("/factura-usuario/{id}")
