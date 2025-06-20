@@ -173,3 +173,7 @@ Cada microservicio es autónomo y posee su propia base de datos MongoDB.
 - El diseño está orientado a cumplir con los requerimientos del proyecto académico sin sobrecomplejidad.
 - Se recomienda implementar autenticación JWT para proteger rutas sensibles.
 - La documentación de cada servicio puede enriquecerse con Swagger/OpenAPI.
+
+
+
+## Hacer microservicio de reporte y login
