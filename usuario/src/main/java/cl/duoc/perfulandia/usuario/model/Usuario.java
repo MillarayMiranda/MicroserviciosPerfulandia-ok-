@@ -26,7 +26,7 @@ public class Usuario {
     private String rut;
 
     @Column(name = "nombre", nullable = false)
-    private String Nombre;
+    private String nombre;
 
     @Column(name = "mail", nullable = false)
     private String correo;
