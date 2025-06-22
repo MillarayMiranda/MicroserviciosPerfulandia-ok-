@@ -1,4 +1,4 @@
-package main.java.cl.duoc.soporte.controller;
+package cl.duoc.soporte.controller;
 
 import cl.duoc.soporte.model.Ticket;
 import cl.duoc.soporte.services.TicketService;

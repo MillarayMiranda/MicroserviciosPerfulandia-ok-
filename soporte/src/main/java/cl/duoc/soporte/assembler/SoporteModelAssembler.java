@@ -1,4 +1,4 @@
-package main.java.cl.duoc.soporte.assembler;
+package cl.duoc.soporte.assembler;
 
 public class SoporteModelAssembler {
 

@@ -1,4 +1,4 @@
-package main.java.cl.duoc.soporte.model;
+package cl.duoc.soporte.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

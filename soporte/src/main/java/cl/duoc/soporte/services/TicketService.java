@@ -1,4 +1,4 @@
-package main.java.cl.duoc.soporte.services;
+package cl.duoc.soporte.services;
 
 import cl.duoc.soporte.model.Ticket;
 import cl.duoc.soporte.repository.TicketRepository;
