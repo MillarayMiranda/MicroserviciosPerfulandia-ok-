@@ -2,6 +2,7 @@ package cl.duoc.perfulandia.envio.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cl.duoc.perfulandia.envio.model.Envio;
@@ -12,11 +13,8 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class EnvioService {
 
-    private final EnvioRepository enviorepository;
-
-    public EnvioService(EnvioRepository enviorepository) {
-        this.enviorepository = enviorepository;
-    }
+    @Autowired
+    private EnvioRepository enviorepository;
 
     public Envio Guardar(Envio envio){
         return enviorepository.save(envio);
