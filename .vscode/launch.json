@@ -102,6 +102,16 @@
             "projectName": "soporte",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LoginApplication<login>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.perfulandia.login.LoginApplication",
+            "projectName": "login",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
