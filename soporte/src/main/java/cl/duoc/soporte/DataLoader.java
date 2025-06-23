@@ -1,6 +1,8 @@
 package cl.duoc.soporte;
 
+import java.time.ZoneId;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,7 +27,12 @@ public class DataLoader implements CommandLineRunner {
             nuevoTicket.setEmailCliente(faker.internet().emailAddress());
             nuevoTicket.setNombreCliente(faker.name().fullName());
             nuevoTicket.setMotivo(faker.lorem().sentence());
-            nuevoTicket.setFechaCreacion(faker);
+            nuevoTicket.setFechaCreacion(faker.date().past(365, TimeUnit.DAYS).toInstant()
+                    .atZone(ZoneId.systemDefault()).toLocalDate()); 
+            nuevoTicket.setEstado(faker.options().option("ABIERTO", "EN_PROCESO", "CERRADO"));
+
+            ticketService.crearTicket(nuevoTicket);
+            System.out.println("Ticket creado: " + nuevoTicket.getId() + " - " + nuevoTicket.getMotivo());
         }
     }
 
