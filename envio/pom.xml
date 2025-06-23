@@ -106,7 +106,15 @@
 			<version>19.8.0.0</version>
 		</dependency>
 
+<<<<<<< HEAD
 
+=======
+		<dependency>
+			<groupId>net.datafaker</groupId>
+			<artifactId>datafaker</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+>>>>>>> 353c0bc2b6d3e58ce444ae762fc60d76102d95a2
 	</dependencies>
 
 	<build>

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -90,6 +91,7 @@ public class EnvioController {
         }
     }
 
+<<<<<<< HEAD
     @PostMapping
     @Operation(summary = "Actualizar envio", description = "Actualiza un envio existente")
     @ApiResponses(value = {
@@ -100,6 +102,9 @@ public class EnvioController {
             content = @Content(mediaType = "application/json",
             schema = @Schema(type = "string", example = "Error en la solicitud")))
     })
+=======
+    @PutMapping
+>>>>>>> 353c0bc2b6d3e58ce444ae762fc60d76102d95a2
     public ResponseEntity<?> ConsultarEnvio(@PathVariable Long id, @RequestBody Envio envio){
         try {
             Envio envioedit = envioservice.ConsultarEnvio(id);
