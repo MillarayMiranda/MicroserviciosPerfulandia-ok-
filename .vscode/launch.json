@@ -93,6 +93,27 @@
             "projectName": "factura",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CuponApplication<cupon>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.cupon.CuponApplication",
+            "projectName": "cupon",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57757 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=cupon"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ReclamoApplication<reclamo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.reclamo.ReclamoApplication",
+            "projectName": "reclamo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
