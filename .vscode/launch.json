@@ -92,6 +92,16 @@
             "projectName": "factura",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SoporteApplication<soporte>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.duoc.soporte.SoporteApplication",
+            "projectName": "soporte",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
