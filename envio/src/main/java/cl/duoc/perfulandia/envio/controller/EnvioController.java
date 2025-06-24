@@ -91,7 +91,11 @@ public class EnvioController {
         }
     }
 
+<<<<<<< HEAD
     @PutMapping("/{id}")
+=======
+    @PutMapping
+>>>>>>> 7d7be6f65d8b72a0d9751462da5f5ba1bba94231
     @Operation(summary = "Actualizar envio", description = "Actualiza un envio existente")
     public ResponseEntity<?> ActualizarEnvio(@PathVariable Long id, @RequestBody Envio envio){
         try {

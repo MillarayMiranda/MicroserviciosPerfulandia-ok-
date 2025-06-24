@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import cl.duoc.reclamo.model.Reclamo;
-import cl.duoc.reclamo.repository.ReclamoRepository;
+
 import cl.duoc.reclamo.service.ReclamoService;
 import net.datafaker.Faker;
 
