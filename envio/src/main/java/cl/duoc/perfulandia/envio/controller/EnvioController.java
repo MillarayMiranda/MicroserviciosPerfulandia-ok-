@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/envio")
+@RequestMapping("/envios")
 @Tag(name = "Envios", description = "Endpoints de los envios de Perfulandia")
 public class EnvioController {
 
@@ -91,17 +91,9 @@ public class EnvioController {
         }
     }
 
-    @PostMapping
+    @PutMapping("/{id}")
     @Operation(summary = "Actualizar envio", description = "Actualiza un envio existente")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Envio actualizado exitosamente",
-            content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = Envio.class))),
-        @ApiResponse(responseCode = "400", description = "Error en la solicitud",
-            content = @Content(mediaType = "application/json",
-            schema = @Schema(type = "string", example = "Error en la solicitud")))
-    })
-    public ResponseEntity<?> ConsultarEnvio(@PathVariable Long id, @RequestBody Envio envio){
+    public ResponseEntity<?> ActualizarEnvio(@PathVariable Long id, @RequestBody Envio envio){
         try {
             Envio envioedit = envioservice.ConsultarEnvio(id);
 

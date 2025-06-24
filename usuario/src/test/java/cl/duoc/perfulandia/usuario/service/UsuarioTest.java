@@ -1,6 +1,6 @@
 package cl.duoc.perfulandia.usuario.service;
 
-@Mock
-public class UsuarioTest {
+import org.mockito.Mock;
 
+public class UsuarioTest {
 }

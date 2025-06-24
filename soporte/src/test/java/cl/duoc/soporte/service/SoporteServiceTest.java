@@ -30,7 +30,6 @@ public class SoporteServiceTest {
         ticket.setEmailCliente("ejemplo@ejemplo.com");
         ticket.setNombreCliente("juan perez");
         ticket.setMotivo("Problema con el pedido");
-        ticket.setFechaCreacion("2023-10-15", null); // Asignar fecha de creación   
         ticket.setEstado("ABIERTO");
 
     }
