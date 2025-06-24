@@ -21,7 +21,7 @@ public class EnvioModelAssembler implements RepresentationModelAssembler<Envio, 
             linkTo(methodOn(EnvioController.class).ConsultarTodos()).withRel("Lista los envios"),
             linkTo(methodOn(EnvioController.class).ConsultarEnvio(envio.getId())).withRel("Obtiene un envio por ID"),
             linkTo(methodOn(EnvioController.class).Guardar(envio)).withRel("Crea un nuevo envio"),
-            linkTo(methodOn(EnvioController.class).ConsultarEnvio(envio.getId(), envio)).withRel("Actualiza un envio"),
+            linkTo(methodOn(EnvioController.class).ConsultarEnvio(envio.getId(), envio)).withRel("Actualiza un envio")
         );
     }
 

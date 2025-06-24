@@ -91,7 +91,7 @@ public class EnvioController {
         }
     }
 
-    @PostMapping
+    @PutMapping
     @Operation(summary = "Actualizar envio", description = "Actualiza un envio existente")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Envio actualizado exitosamente",
