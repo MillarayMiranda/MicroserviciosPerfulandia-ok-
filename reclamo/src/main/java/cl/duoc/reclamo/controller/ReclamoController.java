@@ -75,6 +75,7 @@ public class ReclamoController {
         @ApiResponse(responseCode = "200", description = "Reclamo encontrado",
             content = @Content(schema = @Schema(implementation = Reclamo.class))),
         @ApiResponse(responseCode = "404", description = "Reclamo no encontrado"),
+        
         @ApiResponse(responseCode = "500", description = "Error interno")
     })
     @GetMapping("/{id}")
